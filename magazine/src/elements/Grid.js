@@ -45,7 +45,7 @@ const GridBox = styled.div`
     // 여러가지 속성이 한번에 묶여서 나와줘야하는 경우
     ${(props) =>
     props.is_flex
-      ? `display: flex; align-items: center; justify-content: space-between`
+      ? `display: flex; align-items: center; justify-content: space-between;`
       : ""}
 `;
 
