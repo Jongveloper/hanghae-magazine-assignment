@@ -3,6 +3,7 @@ import { Grid, Text, Input, Button } from "../elements";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { emailCheck } from "../shared/common";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ const Signup = (props) => {
 
   const signup = () => {
     if (id === "" || pwd === "" || user_name === "") {
+      return;
+    }
+    if (!emailCheck(id)){
+      window.alert("이메일 형식이 올바르지 않습니다!");
       return;
     }
     
@@ -54,6 +59,7 @@ const Signup = (props) => {
           <Input
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요."
+            type="password"
             _onChange={(e) => {
               setPwd(e.target.value);
             }}
@@ -64,6 +70,7 @@ const Signup = (props) => {
           <Input
             label="비밀번호 확인"
             placeholder="비밀번호를 다시 입력해주세요."
+            type="password"
             _onChange={(e) => {
               setPwdCheck(e.target.value);
             }}

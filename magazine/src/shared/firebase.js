@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyBy40JawiWiaeBPs8oMvbZDD4ik6mztXN0",
     authDomain: "hangahe-magazine.firebaseapp.com",
@@ -13,6 +14,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const apiKey = firebaseConfig.apiKey;
+
 const auth = firebase.auth();
 
-export {auth};
+export {auth, apiKey};

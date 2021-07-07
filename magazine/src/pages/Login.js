@@ -3,23 +3,25 @@ import { Text, Grid, Input, Button } from "../elements";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions} from "../redux/modules/user";
+import { emailCheck } from "../shared/common";
 
 const Login = (props) => {
   const dispatch = useDispatch();
   const [id, setId] = React.useState("");
-  const [pwd, setPWD] = React.useState("");
-
-  const changeId = (e) => {
-      setId(e.target.value);
-  }
-
-  const changePwd = (e) => {
-    setPWD(e.target.value);
-  }
+  const [pwd, setPwd] = React.useState("");
 
 
-  const login = (props) => {
-    dispatch(userActions.loginAction({user_name: "jong"}))
+  const login = () => {
+    if(id === "" || pwd === "") {
+      window.alert("아이디 혹은 비밀번호가 입력되지 않았습니다!");
+      return;
+    }
+    if(!emailCheck(id)){
+      window.alert("이메일 형식이 올바르지 않습니다!");
+      return;
+    }
+
+    dispatch(userActions.loginFB(id, pwd));
   };
 
   return (
@@ -33,8 +35,8 @@ const Login = (props) => {
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요."
-            _onChange={() => {
-              console.log("아이디 입력했다!!!!");
+            _onChange={(e) => {
+              setId(e.target.value);
             }}
           />
         </Grid>
@@ -43,8 +45,9 @@ const Login = (props) => {
           <Input
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요."
-            _onChange={() => {
-              console.log("비밀번호 입력했다!!!!");
+            type="password"
+            _onChange={(e) => {
+             setPwd(e.target.value);
             }}
           />
         </Grid>
