@@ -52,6 +52,9 @@ const AspectInner = styled.div`
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  background-repeat: no-repeat; background-position: center; background-size: cover;
+  object-fit: cover;
+
 `;
 //이미지를 동그랗게 넣기위해 픽셀값(사이즈) 가 다 같아야하기 때문에 css변수 활용
 const ImageCircle = styled.div`

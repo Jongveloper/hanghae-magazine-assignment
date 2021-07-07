@@ -11,6 +11,7 @@ import Permit from "./Permit";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { Button } from "../elements";
+import PostWrite from "../pages/PostWrite";
 
 import {apiKey} from "./firebase";
 
@@ -33,11 +34,12 @@ function App() {
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
+          <Route path="/signup" exact component={Signup}/>
+          <Route path="/write" exact component={PostWrite}/>
         </ConnectedRouter>
       </Grid>
       <Permit>
-        <Button is_float text="+"></Button>
+        <Button is_float text="+" _onClick={() => {history.push("/write");}}></Button>
       </Permit>
     </React.Fragment>
   );

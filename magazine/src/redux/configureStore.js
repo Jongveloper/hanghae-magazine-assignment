@@ -2,7 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
-
+import Post from "./modules/post";
+import Image from "./modules/image"
 import User from "./modules/user";
 
 export const history = createBrowserHistory();
@@ -10,6 +11,8 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   user: User,
   //만든 히스토리와 라우터가 연결되는 것 그러고 스토어에 저장
+  post: Post,
+  image: Image,
   router: connectRouter(history),
 });
 

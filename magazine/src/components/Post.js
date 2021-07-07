@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Image, Text } from "../elements";
+import { HeartButton } from "../elements";
 
 const Post = (props) => {
   return (
@@ -8,7 +9,7 @@ const Post = (props) => {
         <Grid is_flex padding="16px">
           {/* 차일드 칠드런으로 넘어가는 것들 */}
           <Grid is_flex width="auto">
-            <Image shape="circle" src={props.src} />
+            <Image shape="circle" src={props.user_profile} />
             <Text bold>{props.user_info.user_name}</Text>
           </Grid>
           <Grid is_flex width="auto">
@@ -21,12 +22,12 @@ const Post = (props) => {
         </Grid>
 
         <Grid>
-          <Image shape="rectangle" src={props.src} />
+          <Image shape="rectangle" src={props.image_url} />
         </Grid>
 
         <Grid padding="16px" is_flex>
           <Text bold>좋아요 {props.like_cnt}개 </Text>
-          <Text>❤️‍🔥</Text>
+          <HeartButton></HeartButton>
         </Grid>
       </Grid>
     </React.Fragment>
