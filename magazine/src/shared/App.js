@@ -13,7 +13,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { Button } from "../elements";
 import PostWrite from "../pages/PostWrite";
 import Notification from "../pages/Notification";
-
+import PostDetail from "../pages/PostDetail";
 import {apiKey} from "./firebase";
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
           <Route path="/write" exact component={PostWrite}/>
           <Route path="/write/:id" exact component={PostWrite}/>
           <Route path="/noti" exact component={Notification}/>
+          <Route path="/post/:id" exact component={PostDetail}/>
         </ConnectedRouter>
       </Grid>
       <Permit>

@@ -2,8 +2,10 @@ import React from "react";
 import { Grid, Image, Text, Button } from "../elements";
 import { HeartButton } from "../elements";
 import {history} from "../redux/configureStore";
-
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 const Post = (props) => {
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <Grid>
@@ -17,7 +19,17 @@ const Post = (props) => {
             {props.is_me && (<Button width="auto" padding="4px" margin="4px" _onClick={()=>{
               history.push(`/write/${props.id}`)
             }}>수정</Button>)}
+            {props.is_me && (<Button 
+            width="auto" 
+            padding="4px" 
+            margin="4px" 
+            _onClick={(e)=>{
+                e.preventDefault();
+                e.stopPropagation();
+                dispatch(postActions.deletePostFB(props.id));
+            }}>삭제</Button>)}
             <Text>{props.insert_dt}</Text>
+            
           </Grid>
         </Grid>
 
@@ -31,7 +43,16 @@ const Post = (props) => {
 
         <Grid padding="16px" is_flex>
           <Text bold>좋아요 {props.like_cnt}개 </Text>
-          <HeartButton></HeartButton>
+          <HeartButton
+            _onClick={(e) => {
+              //  이벤트 캡쳐링과 버블링을 막아요!
+              // 이벤트 캡쳐링, 버블링이 뭔지 검색해보기! :)
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch(postActions.toggleLikeFB(props.id));
+            }}
+            is_like={props.is_like}
+          ></HeartButton>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -45,7 +66,7 @@ Post.defaultProps = {
   },
   image_url: "https://avatars.githubusercontent.com/u/59111836?v=4",
   contents: "재미있었던 여행",
-  like_cnt: 10,
+  like_cnt: 0,
   insert_dt: "2020-05-05 10:00:00",
   is_me: false,
 };
