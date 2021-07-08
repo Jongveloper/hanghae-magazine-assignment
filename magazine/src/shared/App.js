@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { Button } from "../elements";
 import PostWrite from "../pages/PostWrite";
+import Notification from "../pages/Notification";
 
 import {apiKey} from "./firebase";
 
@@ -36,6 +37,8 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup}/>
           <Route path="/write" exact component={PostWrite}/>
+          <Route path="/write/:id" exact component={PostWrite}/>
+          <Route path="/noti" exact component={Notification}/>
         </ConnectedRouter>
       </Grid>
       <Permit>
